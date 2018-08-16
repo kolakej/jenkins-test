@@ -1,14 +1,8 @@
-pipeline {
-    agent any {
-        node {
+node {
      def version = env.BUILD_NUMBER
      def workspace = env.WORKSPACE
-     } stages {}
-        stage('Build') {
-          steps {
-            sh "mvn versions:set -DnewVersion=1.0.${version}-SNAPSHOT"
-            sh "mvn -Dmaven.test.failure.ignore clean package"
-        }
+}
+stage('Build') {
+        sh "mvn versions:set -DnewVersion=1.0.${version}-SNAPSHOT"
+        sh "mvn -Dmaven.test.failure.ignore clean package"
       }
-    }
-  }
