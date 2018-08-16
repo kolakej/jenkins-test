@@ -6,9 +6,9 @@ pipeline {
        workdir = pwd()
      }
      stages {
-        dir("${workdir}"){
         stage('Build') {
           steps {
+            dir("${workdir}") {
             sh "mvn versions:set -DnewVersion=1.0.${version}-SNAPSHOT"
             sh "mvn -Dmaven.test.failure.ignore clean package"
             }
