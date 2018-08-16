@@ -7,7 +7,7 @@ pipeline {
      stages {
         stage('Build') {
           steps {
-            sh "mvn versions:set -DnewVersion=1.0.${version}-folder"
+            sh "mvn versions:set -DnewVersion=1.0.${version}-SNAPSHOT"
             sh "mvn -Dmaven.test.failure.ignore clean package"
         }
       }
