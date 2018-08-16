@@ -3,7 +3,7 @@ pipeline {
      environment {
        version = "${env.BUILD_NUMBER}"
        workspace = "${env.WORKSPACE}"
-        workdir = pwd()
+       // workdir = pwd()
      }
      stages {
         stage('Build') {
