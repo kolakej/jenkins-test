@@ -3,7 +3,6 @@ pipeline {
      environment {
        version = "${params.version}"
        workspace = "${env.WORKSPACE}"
-       type = "${params.TYPE OF BUILD}"
         artifact_path = "target/my-app-${version}-RELEASES.jar"
      }
      stages {
