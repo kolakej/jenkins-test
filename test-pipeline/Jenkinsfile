@@ -3,7 +3,7 @@ pipeline {
      environment {
        version = "${env.BUILD_NUMBER}"
        workspace = "${env.WORKSPACE}"
-        path = "${workspace}/target/my-app-1.0.${version}-SNAPSHOT.jar"
+        //path = "${workspace}/target/my-app-1.0.${version}-SNAPSHOT.jar"
      }
      stages {
         stage('Build') {
