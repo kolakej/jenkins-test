@@ -13,7 +13,7 @@ pipeline {
         }
       }
     }
-  }
+  
         stage('Deploy'){
           steps {
            dir("test-pipeline"){
@@ -22,4 +22,5 @@ pipeline {
           }           
           }
         }
-}
+     }
+}  
