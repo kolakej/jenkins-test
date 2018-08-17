@@ -13,5 +13,13 @@ pipeline {
         }
       }
     }
+       stage('Deploy') {
+         steps {
+           dir("test-pipeline"){
+            def path ="${workspace}/target/my-app-1.0.${version}-SNAPSHOT.jar"
+            nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'my-snapshot', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "${path}"]], mavenCoordinate: [artifactId: "my-app", groupId: 'nexus.com', packaging: 'jar', version: "1.0.${version}-SNAPSHOT"]]]
+           }
+         }
+       }
   }
 }
