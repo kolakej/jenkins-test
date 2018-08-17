@@ -16,7 +16,7 @@ pipeline {
        stage('Deploy') {
          steps {
            dir("test-pipeline"){
-           nexusArtifactUploader artifacts: [[artifactId: 'my-app', classifier: '', file: "my-app-1.0.${version}-SNAPSHOT.jar", type: 'jar']], credentialsId: '6b561cf9-acc1-4030-bcf8-9cf3e8a4c7fd', groupId: 'com.mycompany.app', nexusUrl: '35.240.32.10:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: "1.0.${version}-SNAPSHOT"
+              nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-snapshots', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "target/my-app-1.0.${version}-SNAPSHOT.jar"]], mavenCoordinate: [artifactId: "my-app", groupId: "com.mycompany.app", packaging: 'jar', version: "1.0.${version}-SNAPSHOT"]]]
           //  nexusArtifactUploader artifacts: [[artifactId: 'my-app', classifier: '', file: 'target/my-app-1.0.${version}-SNAPSHOT.jar', type: 'jar']], credentialsId: '6b561cf9-acc1-4030-bcf8-9cf3e8a4c7fd', groupId: 'com.mycompany.app', nexusUrl: '35.240.32.10:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0.${version}-SNAPSHOT'
            //  nexusArtifactUploader {
            //    nexusVersion('nexus3')
