@@ -20,21 +20,21 @@ pipeline {
            // nexusArtifactUploader artifacts: [[artifactId: 'my-app', classifier: '', file: 'target/my-app-1.0.${version}-SNAPSHOT.jar', type: 'jar']],
            // credentialsId: '6b561cf9-acc1-4030-bcf8-9cf3e8a4c7fd', groupId: 'com.mycompany.app', nexusUrl: '35.240.32.10:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0.${version}-SNAPSHOT'
              nexusArtifactUploader {
-        nexusVersion('nexus3')
-        protocol('http')
-        nexusUrl('http://35.240.32.10:8081/')
-        groupId('com.mycompany.app')
-        version('1.0.${version}-SNAPSHOT')
-        repository('maven-snapshots')
-        credentialsId('6b561cf9-acc1-4030-bcf8-9cf3e8a4c7fd')
-        artifact {
-            artifactId('my-app')
-            type('jar')
-            file('target/my-app-1.0.${version}-SNAPSHOT.jar')
+               nexusVersion('nexus3')
+               protocol('http')
+               nexusUrl('http://35.240.32.10:8081/')
+               groupId('com.mycompany.app')
+               version('1.0.${version}-SNAPSHOT')
+               repository('maven-snapshots')
+               credentialsId('6b561cf9-acc1-4030-bcf8-9cf3e8a4c7fd')
+               artifact {
+                 artifactId('my-app')
+                 type('jar')
+                 file('target/my-app-1.0.${version}-SNAPSHOT.jar')
+                }
+              }
+            }
+          }
         }
-           }
-         }
-       }
-  }
-     }
-}
+      }
+    }
