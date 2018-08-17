@@ -3,7 +3,7 @@ pipeline {
      environment {
        version = "${env.BUILD_NUMBER}"
        workspace = "${env.WORKSPACE}"
-        path = workspace + "target/my-app-1.0.${version}-SNAPSHOT.jar"
+        path = "${workspace}/target/my-app-1.0.${version}-SNAPSHOT.jar"
      }
      stages {
         stage('Build') {
@@ -18,7 +18,7 @@ pipeline {
         stage('Deploy'){
           steps {
            dir("test-pipeline"){
-                  nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'my-snapshot', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: path]], mavenCoordinate: [artifactId: "my-app", groupId: 'nexus.com', packaging: 'jar', version: "1.0.${version}-SNAPSHOT"]]]
+                  nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'my-snapshot', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "${path}"]], mavenCoordinate: [artifactId: "my-app", groupId: 'nexus.com', packaging: 'jar', version: "1.0.${version}-SNAPSHOT"]]]
           }           
           }
         }
