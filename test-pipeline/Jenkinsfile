@@ -16,7 +16,7 @@ pipeline {
        stage('Deploy') {
          steps {
            dir("test-pipeline"){
-            nexusPublisher nexusInstanceId: 'maven-snapshots', nexusRepositoryId: 'maven-snapshots', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "target/my-app-1.0.${version}-SNAPSHOT.jar"]], mavenCoordinate: [artifactId: "my-app", groupId: "com.mycompany.app", packaging: 'jar', version: "1.0.${version}-SNAPSHOT"]]]
+            nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-snapshots', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "target/my-app-1.0.${version}-SNAPSHOT.jar"]], mavenCoordinate: [artifactId: "my-app", groupId: "com.mycompany.app", packaging: 'jar', version: "1.0.${version}-SNAPSHOT"]]]
            }
          }
        }
