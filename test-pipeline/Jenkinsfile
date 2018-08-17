@@ -1,11 +1,13 @@
 pipeline {
     agent any 
      environment {
-       script {
+      script {
        if(params[version]==null){
        version = "1.0.${env.BUILD_NUMBER}"
+       else {
+         version = "${params.version}"
        }
-       version = "${params.version}"
+       }
        }
        workspace = "${env.WORKSPACE}"
         artifact_path = "target/my-app-${version}-RELEASES.jar"
