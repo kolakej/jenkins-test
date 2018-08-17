@@ -3,7 +3,7 @@ pipeline {
      environment {
        version = "${env.BUILD_NUMBER}"
        workspace = "${env.WORKSPACE}"
-        artifact_path = "${workspace}/test-pipeline/target/my-app-1.0.${version}-RELEASES.jar"
+        artifact_path = "target/my-app-1.0.${version}-RELEASES.jar"
      }
      stages {
         stage('Build') {
