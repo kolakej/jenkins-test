@@ -1,13 +1,10 @@
 pipeline {
     agent any 
      environment {
-       version = "${env.BUILD_NUMBER}"
+       version = "${params.version}"
        workspace = "${env.WORKSPACE}"
         artifact_path = "target/my-app-1.0.${version}-RELEASES.jar"
      }
-      parameters {
-         choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
-    }
      stages {
         stage('Build') {
           steps {
