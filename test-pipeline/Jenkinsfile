@@ -14,15 +14,12 @@ pipeline {
         }
       }
     }
-        stage('Deploy'){
+        stage('Deploy') {
           steps {
            dir("test-pipeline"){
                   nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "${artifact_path}"]], mavenCoordinate: [artifactId: "my-app", groupId: 'nexus.com', packaging: 'jar', version: "${version}-RELEASES"]]]
           }           
           }
         }
-     }
-     post{
-     build(job: "MavenDelivery", parameters: [string(name: 'version', value: "${version}")])
      }
 }  
