@@ -9,7 +9,9 @@ pipeline {
         stage('Build') {
            agent {
         label "test" }
-    
+     tools {
+        git 'Default' 
+     }
           steps {
             dir("test-pipeline"){
             sh "mvn versions:set -DnewVersion=${version}-RELEASES"
@@ -20,6 +22,9 @@ pipeline {
         stage('Deploy') {
             agent {
         label "test" }
+        tools {
+        git 'Default' 
+     }
           steps {
            dir("test-pipeline"){
                   nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "${artifact_path}"]], mavenCoordinate: [artifactId: "my-app", groupId: 'nexus.com', packaging: 'jar', version: "${version}-RELEASES"]]]
