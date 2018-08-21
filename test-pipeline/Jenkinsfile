@@ -5,7 +5,6 @@ pipeline {
        workspace = "${env.WORKSPACE}"
         artifact_path = "target/my-app-${version}-RELEASES.jar"
      }
-     properties([[$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false], parameters([string(defaultValue: '', description: 'Version of build', name: 'version', trim: false)])])
      stages {
         stage('Build') {
           steps {

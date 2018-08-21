@@ -6,11 +6,10 @@ pipeline {
       // workdir = pwd()
      }
      stages {
-        stage('Build') {
+        stage('Delivery') {
           steps {
-        //    dir("${workdir}") {
-            sh "mvn versions:set -DnewVersion=1.0.${version}-SNAPSHOT"
-            sh "mvn -Dmaven.test.failure.ignore clean package"
+           sh "curl -X GET http://35.187.18.32:8081/repository/maven-releases/nexus/com/my-app/1.0.4-RELEASES/my-app-1.0.4-RELEASES.jar -O"
+           sh "java -jar my-app-1.0.4-RELEASES.jar"
             }
         }
       }
