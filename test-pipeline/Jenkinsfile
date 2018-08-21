@@ -8,7 +8,7 @@ pipeline {
      stages {
         stage('Build') {
            agent {
-        label "test"
+        label "test" }
     
           steps {
             dir("test-pipeline"){
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Deploy') {
             agent {
-        label "test"
+        label "test" }
           steps {
            dir("test-pipeline"){
                   nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "${artifact_path}"]], mavenCoordinate: [artifactId: "my-app", groupId: 'nexus.com', packaging: 'jar', version: "${version}-RELEASES"]]]
@@ -28,5 +28,5 @@ pipeline {
           }
         }
         }
-     }
+     
 }  
