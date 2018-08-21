@@ -1,5 +1,5 @@
 pipeline {
-    agent any 
+    agent test
      environment {
       version = "${params.version}"
        workspace = "${env.WORKSPACE}"
