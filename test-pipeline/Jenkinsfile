@@ -21,8 +21,10 @@ stage ('Initialize') {
     stage('Build') {
       agent { label "only-java" }
           steps {
-            sh "mvn versions:set -DnewVersion=${version}-RELEASES"
-            sh "mvn -Dmaven.test.failure.ignore clean package"
+            sh ''''
+            mvn versions:set -DnewVersion=${version}-RELEASES"
+            mvn -Dmaven.test.failure.ignore clean package"
+            '''
           }
         }
         stage('Deploy') { 
