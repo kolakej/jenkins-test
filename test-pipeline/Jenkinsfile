@@ -1,7 +1,7 @@
 pipeline {
     agent none
      tools {
-        git 'Default' 
+        git 'test' 
         maven 'maven'
      }
      environment {
