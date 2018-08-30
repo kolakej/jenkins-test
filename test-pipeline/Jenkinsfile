@@ -15,7 +15,6 @@ pipeline {
             maven "-Dmaven.test.failure.ignore clean package"
           }
         }
-      }
         stage('Deploy') { 
           agent { label "only-java" }
           steps {
@@ -23,3 +22,4 @@ pipeline {
            }
           }           
         }
+}
