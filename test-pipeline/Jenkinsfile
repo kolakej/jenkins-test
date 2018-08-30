@@ -5,7 +5,7 @@ pipeline {
         maven 'maven'
      }
      environment {
-      version = "${params.version}"
+      version = "1.0.2"
      }
      stages {
     stage('Build') {
