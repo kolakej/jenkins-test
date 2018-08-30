@@ -2,6 +2,7 @@ pipeline {
     agent none
      tools {
         git 'Default' 
+        maven 'maven'
      }
      environment {
       version = "${params.version}"
