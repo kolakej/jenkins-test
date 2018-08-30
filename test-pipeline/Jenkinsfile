@@ -9,8 +9,7 @@ pipeline {
         artifact_path = "target/my-app-${version}-RELEASES.jar"
      }
      stages {
-        stage('Build') {
-           agent {
+        stage('Build') 
         label "test" }
           steps {
             dir("test-pipeline"){
@@ -18,9 +17,7 @@ pipeline {
             sh "mvn -Dmaven.test.failure.ignore clean package"
         }
       }
-    }
-        stage('Deploy') {
-            agent {
+        stage('Deploy') {       
         label "test" }
           steps {
            dir("test-pipeline"){
@@ -28,5 +25,3 @@ pipeline {
           }           
           }
         }
-        }
-}
