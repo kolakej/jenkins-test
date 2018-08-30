@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
      tools {
         git 'test' 
         maven 'maven'
@@ -8,6 +8,15 @@ pipeline {
       version = "1.0.2"
      }
      stages {
+
+stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
     stage('Build') {
       agent { label "only-java" }
           steps {
