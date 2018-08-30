@@ -1,12 +1,10 @@
 pipeline {
-    agent none
+    agent any
      tools {
         git 'Default' 
      }
      environment {
       version = "${params.version}"
-       workspace = "${env.WORKSPACE}"
-        artifact_path = "target/my-app-${version}-RELEASES.jar"
      }
      stages {
     stage('Build') 
@@ -17,5 +15,13 @@ pipeline {
             sh "mvn -Dmaven.test.failure.ignore clean package"
         }
       }
-    }
+        stage('Deploy') { 
+          agent { label "test" }
+          steps {
+           dir("test-pipeline"){
+              nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "${artifact_path}"]], mavenCoordinate: [artifactId: "my-app", groupId: 'nexus.com', packaging: 'jar', version: "${version}-RELEASES"]]]
+           }
+          }           
+        }
+      }
 }
