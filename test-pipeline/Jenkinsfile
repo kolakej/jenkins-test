@@ -1,5 +1,5 @@
 pipeline {
-    agent label "only-java"
+    agent { label "only-java" }
      tools {
         git 'test' 
         maven 'maven'
