@@ -15,11 +15,9 @@ pipeline {
             sh "mvn -Dmaven.test.failure.ignore clean package"
         }
       }
-    }
         stage('Deploy') { 
           agent { label "only-java" }
           steps {
-          {
               nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "${artifact_path}"]], mavenCoordinate: [artifactId: "my-app", groupId: 'nexus.com', packaging: 'jar', version: "${version}-RELEASES"]]]
            }
           }           
