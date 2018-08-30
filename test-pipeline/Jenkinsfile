@@ -20,8 +20,8 @@ stage ('Initialize') {
     stage('Build') {
       agent { label "only-java" }
           steps {
-            maven "versions:set -DnewVersion=${version}-RELEASES"
-            maven "-Dmaven.test.failure.ignore clean package"
+            sh "mvn versions:set -DnewVersion=${version}-RELEASES"
+            sh "mvn -Dmaven.test.failure.ignore clean package"
           }
         }
         stage('Deploy') { 
